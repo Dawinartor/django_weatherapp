@@ -25,12 +25,15 @@ SECRET_KEY = 'django-insecure-j2#v(_4_wd-6e85ybl*e=y0@6(*!zsche&tai(l-hgxb4z=k*%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "*"
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'weather.apps.WeatherConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
