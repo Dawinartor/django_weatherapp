@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Django Simple Weather App  {% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/rainning.css' %}">
+{% endblock %}
 
+{% block content %}
     <div class="frame">
       <div class="moon">
         <div class="moon-crater1"></div>
@@ -77,6 +76,5 @@
       <div class="drop-small-9"></div>
       <div class="drop-small-10"></div>
     </div>
+{% endblock %}
 
-</body>
-</html>
