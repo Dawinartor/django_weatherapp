@@ -13,7 +13,7 @@ body {
   margin-left: -200px;
   border-radius: 2px;
   box-shadow: .5rem .5rem 1rem rgba(0, 0, 0, 0.6);
-	background-image: linear-gradient(to top, #40334f, #2f273c, #272232, #201c29);
+	background-image: linear-gradient(to bottom, #B0C4DE 0%, #708090 50%, #1E90FF 100%);
   color: #4b384c;
   font-family: 'overlock', Helvetica, sans-serif;
   font-weight: 300;
@@ -29,7 +29,7 @@ body {
   top: 45px;
   left: 55px;
   border-radius: 50px;
-	background-image: linear-gradient(to left top, #b1b1c5, #928fa3, #746f82, #575162, #3c3444);
+	background-image: linear-gradient(to bottom, #1A1A1A 0%, #424242 50%, #3D3D3D 60%, #FFD700 100%);
 	box-shadow: 0 0 3rem #B1B1C5;
 	animation: rise 1s ease-out;
 	&:hover {
@@ -64,7 +64,7 @@ body {
   height: 281px;
   top: 201px;
   left: -57px;
-  background: #503760;
+  background: linear-gradient(to bottom, #9ee88d, #31a80a);
   border-radius: 50%;
 	box-shadow: -.5rem 0 .8rem rgba(0, 0, 0, .3);
 }
@@ -75,7 +75,7 @@ body {
 }
 
 .hill-fg-1, .hill-fg-2, .hill-fg-3 {
-  background: #695b93;
+  background: linear-gradient(to bottom, #9ee88d, #31a80a);
   top: 228px;
   left: -137px;
 }
