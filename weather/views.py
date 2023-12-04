@@ -8,3 +8,9 @@ class HomeView(TemplateView):
 
 class RainView(TemplateView):
     template_name = 'weather/rainning.html'
+
+class SunnyView(TemplateView):
+    template_name = 'weather/sunny.html'
+
+class ClearView(TemplateView):
+    template_name = 'weather/clear.html'
