@@ -2,10 +2,14 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 
 
+
+
 # Create your views here.
 
-class HomeView(TemplateView):
-    template_name = 'weather/home.html'
+def HomeView(request):
+    current_weather = "Sun"
+    context = {"current_weather": current_weather}
+    return render(request, "weather/home.html", context)
 
 class RainView(TemplateView):
     template_name = 'weather/rainning.html'
