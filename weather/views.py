@@ -18,7 +18,13 @@ def HomeView(request):
     context = {"current_weather": current_weather}
     return render(request, "weather/home.html", context)
 
-class WebtherView(TemplateView):
-    rainTemplate = "weather/rain.html"
-    sunTemplate = "weather/sun.html"
-    clearTemplate = "weather/clear.html"
+def WebtherView(TemplateView):
+    template_name = 'base.html'
+
+    weather_templates = {
+        'rainny': 'weather/rain.html',
+        'sunny': 'weather/sun.html',
+        'clear': 'weather/clear.html'
+    }
+
+

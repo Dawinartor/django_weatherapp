@@ -20,13 +20,19 @@ class DataConverter:
 
 # utillity for calling openWeather API and collecting informations
 class WeatherCaller:
-    def __init__(self):
+    def __init__(self): # todo: add base_url concept
         # loading API key in system
         self.API_KEY = os.environ.get('API_KEY')
-        #self.BASE_URL = "http://api.openweathermap.org/data/2.5/weather?"
-        self.WEBTHER_FORMAT = {"current_temperature": 0, "temperature_today_max": 0, "temperature_today_min": 0, "sunrise_today": 0, "sunset_today": 0}
-        # Tempreture converter
+        # data converter
         self.data_converter = DataConverter()
+        self.WEBTHER_FORMAT = {
+            "current_weather_status": "",
+            "current_temperature": 0,
+            "temperature_today_max": 0,
+            "temperature_today_min": 0,
+            "sunrise_today": 0,
+            "sunset_today": 0
+        }
 
 
     def get_url(self, city, country):
@@ -40,6 +46,7 @@ class WeatherCaller:
 
     def get_webther_format(self, weather_data):
         webther_data = self.WEBTHER_FORMAT
+        webther_data["current_weather_status"] = weather_data["weather"][0]["main"]
         webther_data["current_temperature"] = self.data_converter.Kelvin_to_celsius(weather_data["main"]["temp"])
         webther_data["temperature_today_max"] = self.data_converter.Kelvin_to_celsius(weather_data["main"]["temp_max"])
         webther_data["temperature_today_min"] = self.data_converter.Kelvin_to_celsius(weather_data["main"]["temp_min"])
