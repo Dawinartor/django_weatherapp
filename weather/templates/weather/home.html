@@ -3,7 +3,8 @@
 {% block title %} Django Simple Weather App  {% endblock %}
 
 {% block content %}
+    <h3>{{ context }}</h3>
     {% if current_weather %}
-        <h3>{{ current_weather }}</h3>
+        <h3>{{ context }}</h3>
     {% endif %}
 {% endblock %}
