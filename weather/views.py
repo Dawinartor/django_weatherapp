@@ -8,7 +8,7 @@ from .utilities import WeatherCaller
 weather_util = WeatherCaller()
 base_url = weather_util.get_url("Bremen", "") #TODO: country is optional
 print(base_url)
-weather_data = weather_util.get_weather_data(base_url)
+weather_data = weather_util.get_weather_data_raw(base_url)
 print(weather_data)
 ret = weather_util.get_webther_format(weather_data)
 print(ret)
@@ -18,11 +18,7 @@ def HomeView(request):
     context = {"current_weather": current_weather}
     return render(request, "weather/home.html", context)
 
-class RainView(TemplateView):
-    template_name = 'weather/rainning.html'
-
-class SunnyView(TemplateView):
-    template_name = 'weather/sunny.html'
-
-class ClearView(TemplateView):
-    template_name = 'weather/clear.html'
+class WebtherView(TemplateView):
+    rainTemplate = "weather/rain.html"
+    sunTemplate = "weather/sun.html"
+    clearTemplate = "weather/clear.html"
