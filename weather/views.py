@@ -6,12 +6,12 @@ from .utilities import WeatherCaller
 # Create your views here.
 
 weather_util = WeatherCaller()
-print(weather_util.get_geolocation("Bremen"))
-lat, lon = weather_util.get_geolocation("Bremen")
-base_url = weather_util.get_url(lat, lon, ["minutely", "hourly", "daily", "alerts"])
+base_url = weather_util.get_url("Bremen", "") #TODO: country is optional
 print(base_url)
 weather_data = weather_util.get_weather_data(base_url)
 print(weather_data)
+ret = weather_util.get_webther_format(weather_data)
+print(ret)
 
 def HomeView(request):
     current_weather = "Sun"
