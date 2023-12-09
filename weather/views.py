@@ -18,7 +18,7 @@ def HomeView(request):
     context = {"current_weather": current_weather}
     return render(request, "weather/home.html", context)
 
-def WebtherView(TemplateView):
+def WebtherView(TemplateView): #todo: implement api call and showing data in view
     template_name = 'base.html'
 
     weather_templates = {
