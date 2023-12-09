@@ -16,6 +16,7 @@ def WebtherView(request):
     base_url = weather_util.get_url("Bremen", "Germany")
     raw_data = weather_util.get_weather_data_raw(base_url)
     context = weather_util.get_webther_format(raw_data)
+    print(context)
 
     # conditional template switch logic
     if context['current_weather_status'] == "Drizzel" or "Rain" or "Thunderstorm" or "Snow":
@@ -26,17 +27,8 @@ def WebtherView(request):
     if context['current_weather_status'] == "Clear":
         template_name = weather_templates['clear']
 
-
-
     return render(request, template_name, context)
 
-#def WebtherView(TemplateView): #todo: implement api call and showing data in view
- #   template_name = 'base.html'
-
-  #  weather_templates = {
-   #     'rainny': 'weather/rain.html',
-    #    'sunny': 'weather/sun.html',
-     #   'clear': 'weather/clear.html'
-   # }
+#def WebtherView(TemplateView): #TODOO: implement api call and showing data in view
 
 
