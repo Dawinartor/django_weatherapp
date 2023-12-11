@@ -12,11 +12,11 @@
   </head>
 
   <body>
-    <div class="app">
       <header>
         <div class="header-first-row">
           <h1 class="title">Django Simple Weather App</h1>
         </div>
+
         <nav class="navbar">
             {% comment %} <a class="nav-item" href="{% url 'home' %}">Home</a> {% endcomment %}
             {% comment block %} <a class="nav-item" href="{% url 'lines' %}">Lines</a> {% endcomment %}
@@ -24,7 +24,7 @@
             {% comment %} <a class="nav-item" href="{% url 'stops' %}">Stops</a> {% endcomment %}
         </nav>
       </header>
+        {% comment %} Here is the place where to put a components {% endcomment %}
       <main>{% block content %}{% endblock %}</main>
-    </div>
   </body>
 </html>

@@ -1,16 +1,34 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from .utilities import WeatherCaller
 
 
 # Create your views here.
-class HomeView(TemplateView):
-    template_name = 'weather/home.html'
+def WebtherView(request):
+    weather_templates = {
+        'rainny': 'weather/rainning.html',
+        'sunny': 'weather/sunny.html',
+        'clear': 'weather/clear.html'
+    }
+    template_name = ""
 
-class RainView(TemplateView):
-    template_name = 'weather/rainning.html'
+    weather_util = WeatherCaller()
+    base_url = weather_util.get_url("Bremen", "Germany")
+    raw_data = weather_util.get_weather_data_raw(base_url)
+    context = weather_util.get_webther_format(raw_data)
+    print(context)
 
-class SunnyView(TemplateView):
-    template_name = 'weather/sunny.html'
+    # conditional template switch logic
+    if context['current_weather_status'] == "Drizzel" or "Rain" or "Thunderstorm" or "Snow":
+        template_name = weather_templates['rainny']
+    if context['current_weather_status'] == "Sun":
+        template_name = weather_templates['sunny']
+        print(template_name)
+    if context['current_weather_status'] == "Clear":
+        template_name = weather_templates['clear']
 
-class ClearView(TemplateView):
-    template_name = 'weather/clear.html'
+    return render(request, template_name, context)
+
+#def WebtherView(TemplateView): #TODOO: implement api call and showing data in view
+
+

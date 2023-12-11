@@ -7,10 +7,7 @@
 
 {% block content %}
     <div class="frame">
-      <div class="moon">
-        <div class="moon-crater1"></div>
-        <div class="moon-crater2"></div>
-      </div>
+      <div class="moon"></div>
       <div class="hill-bg-1"></div>
       <div class="hill-bg-2"></div>
       <div class="hill-fg-1"></div>
@@ -20,24 +17,24 @@
       <div class="front">
             <div>
                 <div class="temperature">
-                    12°
+                    {{ current_temperature }}°
                 </div>
                 <div class="icons">
                     <i class="fas fa-wind"></i><br/><i class="fas fa-tint"></i>
                 </div>
                 <div>
                     <div class="info">
-                         E 7 km/h <br> 87%
+                          <br> 87%
                     </div>
                     <table class="preview">
                         <tbody>
                             <tr>
-                                <td>Tue</td>
-                                <td>21° | 9°</td>
+                                <td> max </td>
+                                <td>{{ temperature_today_max }}°</td>
                             </tr>
                             <tr>
-                                <td>Wed</td>
-                                <td>23° | 10°</td>
+                                <td> min </td>
+                                <td>{{ temperature_today_min }}°</td>
                             </tr>
                         </tbody>
                     </table>
