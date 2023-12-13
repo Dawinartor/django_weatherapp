@@ -2,7 +2,7 @@ from django.shortcuts import render
 # from django.views.generic import TemplateView
 from .utilities import WeatherCaller
 
-# Current TODO: Create various components for all weather conditions
+# Current TODi: Create various components for all weather conditions
 # List: Thunderstorm, Drizzle, Rain, Snow, Atmosphere, Clear, Clouds
 
 # Create your views here.
@@ -15,7 +15,7 @@ def WebtherView(request):
         'atmosphere': 'weather/atmosphere.html',
         'clear': 'weather/clear.html',
         'clouds': 'weather/clouds.html',
-        'sunny': 'weather/sunny.html',  # unused template so far
+        'sunny': 'weather/sun.html',  # unused template so far
     }
     template_name = ""
 
@@ -24,6 +24,7 @@ def WebtherView(request):
     raw_data = weather_util.get_weather_data_raw(base_url)
     context = weather_util.get_webther_format(raw_data)
     print(context)
+    context['current_weather_status'] = "Sun"
 
     # conditional template switch logic
     if context['current_weather_status'] == "Thunderstorm":
@@ -40,6 +41,8 @@ def WebtherView(request):
         template_name = weather_templates['clear']
     elif context['current_weather_status'] == "Clouds":
         template_name = weather_templates['clouds']
+    elif context['current_weather_status'] == "Sun":
+        template_name = weather_templates['sunny']
 
     return render(request, template_name, context)
 
