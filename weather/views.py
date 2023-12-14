@@ -20,11 +20,11 @@ def WebtherView(request):
     template_name = ""
 
     weather_util = WeatherCaller()
-    base_url = weather_util.get_url("Bremen", "Germany")
+    base_url = weather_util.get_url()
     raw_data = weather_util.get_weather_data_raw(base_url)
     context = weather_util.get_webther_format(raw_data)
     print(context)
-    context['current_weather_status'] = "Sun"
+    context['current_weather_status'] = "Rain"
 
     # conditional template switch logic
     if context['current_weather_status'] == "Thunderstorm":

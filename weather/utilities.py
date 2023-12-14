@@ -35,9 +35,16 @@ class WeatherCaller:
         }
 
 
-    def get_url(self, city, country):
-        params = {"city": str(city), "country": str(country)}
-        base_url = f"https://api.openweathermap.org/data/2.5/weather?q={params['city']},{params['country']}&appid={self.API_KEY}"
+    def get_url(self, lat=53.073635, lon=8.806422, exc = ["minutely", "hourly", "daily"]):
+        params = {"latitude": lat, "longitude": lon, "excluding_info": ','.join(exc)}
+        print(params)
+        #base_url = f"https://api.openweathermap.org/data/2.5/weather?q={params['city']},{params['country']}&appid={self.API_KEY}"
+        base_url = (f"https://api.openweathermap.org/data/2.5/onecall?" +
+                    f"lat={params['latitude']}" +
+                    f"&lon={params['longitude']}" +
+                    f"&exclude={params['excluding_info']}" +
+                    f"&appid={self.API_KEY}")
+        print(base_url)
         return base_url
 
     def get_weather_data_raw(self, url):
