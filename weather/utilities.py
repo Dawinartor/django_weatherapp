@@ -26,21 +26,23 @@ class WeatherCaller:
         # data converter
         self.data_converter = DataConverter()
         self.WEBTHER_FORMAT = {
+            "current_weather_icon": "",
             "current_weather_status": "",
+            "current_weather_description": "",
+            "date_time_stamp": "",
             "current_temperature": 0,
-            "temperature_today_max": 0,
-            "temperature_today_min": 0,
-            "sunrise_today": 0,
-            "sunset_today": 0
+            "current_temperature_feels_like": 0,
+            "today_sunrise": 0,
+            "today_sunset": 0,
+            "current_uvi": 0,
+            "current_wind_speed": 0
         }
 
 
     def get_url(self, lat=53.073635, lon=8.806422, exc = ["minutely", "hourly", "daily"]):
         params = {"latitude": lat, "longitude": lon, "excluding_info": ','.join(exc)}
-        print(params)
-        #base_url = f"https://api.openweathermap.org/data/2.5/weather?q={params['city']},{params['country']}&appid={self.API_KEY}"
-        base_url = (f"https://api.openweathermap.org/data/2.5/onecall?" +
-                    f"lat={params['latitude']}" +
+        base_url = (f"https://api.openweathermap.org/data/2.5/onecall?&units=metric" +
+                    f"&lat={params['latitude']}" +
                     f"&lon={params['longitude']}" +
                     f"&exclude={params['excluding_info']}" +
                     f"&appid={self.API_KEY}")
@@ -51,12 +53,16 @@ class WeatherCaller:
         response = requests.get(str(url))
         return response.json()
 
-    def get_webther_format(self, weather_data):
+    def data_raw_to_webther_format(self, raw_data):
         webther_data = self.WEBTHER_FORMAT
-        webther_data["current_weather_status"] = weather_data["weather"][0]["main"]
-        webther_data["current_temperature"] = self.data_converter.Kelvin_to_celsius(weather_data["main"]["temp"])
-        webther_data["temperature_today_max"] = self.data_converter.Kelvin_to_celsius(weather_data["main"]["temp_max"])
-        webther_data["temperature_today_min"] = self.data_converter.Kelvin_to_celsius(weather_data["main"]["temp_min"])
-        webther_data["sunrise_today"] = self.data_converter.unix_timestamp_to_europe(weather_data["sys"]["sunrise"])
-        webther_data["sunset_today"] = self.data_converter.unix_timestamp_to_europe(weather_data["sys"]["sunset"])
+        webther_data["current_weather_icon"] = raw_data['current']['weather'][0]['icon']
+        webther_data["current_weather_status"] = raw_data['current']['weather'][0]['main']  # relevant for ChatGPT later
+        webther_data["current_weather_description"] = raw_data['current']['weather'][0]['description']  # relevant for ChatGPT later
+        webther_data["date_time_stamp"] = self.data_converter.unix_timestamp_to_europe(raw_data["current"]["dt"])
+        webther_data["current_temperature"] = raw_data['current']["temp"]  # relevant for ChatGPT later
+        webther_data["current_temperature_feels_like"] = raw_data['current']["feels_like"]  # relevant for ChatGPT later
+        webther_data["today_sunrise"] = raw_data['current']["sunrise"]
+        webther_data["today_sunset"] = raw_data['current']["sunset"]
+        webther_data["current_uvi"] = raw_data['current']["temp"]  # relevant for ChatGPT later
+        webther_data["current_wind_speed"] = raw_data['current']["wind_speed"]
         return webther_data
