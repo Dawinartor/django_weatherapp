@@ -11,10 +11,10 @@ class DataConverter:
     def Kelvin_to_celsius(self, kelvin_value):
         return round(kelvin_value - self.KELVIN_CONSTANT)
 
-    def unix_timestamp_to_europe(self, timestamp, timezone_name='Europe/Berlin'):
+    def unix_timestamp_to_europe_time(self, timestamp, timezone_name='Europe/Berlin'):
         target_timezone = pytz.timezone(timezone_name)
         dt_object = datetime.fromtimestamp(timestamp, tz=pytz.utc).astimezone(target_timezone)
-        formatted_day_time = dt_object.strftime("%H:%M:%S %Z")  #%Y-%m-%d
+        formatted_day_time = dt_object.strftime("%H:%M")  #%Y-%m-%d
         return formatted_day_time
 
 
@@ -58,11 +58,11 @@ class WeatherCaller:
         webther_data["current_weather_icon"] = raw_data['current']['weather'][0]['icon']
         webther_data["current_weather_status"] = raw_data['current']['weather'][0]['main']  # relevant for ChatGPT later
         webther_data["current_weather_description"] = raw_data['current']['weather'][0]['description']  # relevant for ChatGPT later
-        webther_data["date_time_stamp"] = self.data_converter.unix_timestamp_to_europe(raw_data["current"]["dt"])
+        webther_data["date_time_stamp"] = self.data_converter.unix_timestamp_to_europe_time(raw_data["current"]["dt"])
         webther_data["current_temperature"] = raw_data['current']["temp"]  # relevant for ChatGPT later
         webther_data["current_temperature_feels_like"] = raw_data['current']["feels_like"]  # relevant for ChatGPT later
-        webther_data["today_sunrise"] = raw_data['current']["sunrise"]
-        webther_data["today_sunset"] = raw_data['current']["sunset"]
-        webther_data["current_uvi"] = raw_data['current']["temp"]  # relevant for ChatGPT later
+        webther_data["today_sunrise"] = self.data_converter.unix_timestamp_to_europe_time(raw_data['current']["sunrise"])
+        webther_data["today_sunset"] = self.data_converter.unix_timestamp_to_europe_time(raw_data['current']["sunset"])
+        webther_data["current_uvi"] = raw_data['current']["uvi"]  # relevant for ChatGPT later
         webther_data["current_wind_speed"] = raw_data['current']["wind_speed"]
         return webther_data

@@ -120,7 +120,7 @@
 }
 .front .preview td {
   padding: 0 3px;
-  text-transform: uppercase;
+   text-transform: capitalize;
 }
 
 @keyframes rise {

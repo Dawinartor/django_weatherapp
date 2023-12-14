@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %} Rain {% endblock %}
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{% static 'weather/rain.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/rain/rain.css' %}">
 {% endblock %}
 
 {% block body_title %} Rain {% endblock %}
@@ -18,31 +18,33 @@
       <div class="front">
             <div>
                 <div class="temperature">
-                    {{ current_temperature }}°
+                    {{ current_temperature|floatformat:0 }}°
                 </div>
                 <div class="icons">
-                    <i class="fas fa-wind">{{ current_weather_icon }}</i><br/><i class="fas fa-tint"></i>
+                    <!--i class="fas fa-wind"></i><br/><i class="fas fa-tint"></i-->
                 </div>
                 <div>
                     <div class="info">
-                          <br> 87%
+                        {{ current_uvi|floatformat:0 }} UV <br> {{ current_wind_speed|floatformat:0 }} KM/H
                     </div>
                     <table class="preview">
                         <tbody>
                             <tr>
-                                <td> max </td>
-                                <td>{{ temperature_today_max }}°</td>
+                                <td> sunrise </td>
+                                <td>{{ today_sunrise }}</td>
                             </tr>
                             <tr>
-                                <td> min </td>
-                                <td>{{ temperature_today_min }}°</td>
+                                <td> sunset </td>
+                                <td>{{ today_sunset }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="proverb">“Frogs croaking in the lagoon,<br/>Means rain will come real soon.”</div>
+            <!-- the proverb is reserved for ChatGPT clothing recomandation -->
+            <div class="proverb">{{ current_weather_description }}</div>
         </div>
+
       <div class="drop-big-1"></div>
       <div class="drop-big-2"></div>
       <div class="drop-big-3"></div>

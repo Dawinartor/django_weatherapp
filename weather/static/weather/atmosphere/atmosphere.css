@@ -10,7 +10,7 @@
   margin-left: -200px;
   border-radius: 2px;
   box-shadow: .5rem .5rem 1rem rgba(0, 0, 0, 0.6);
-	background-image: linear-gradient(to bottom, #87CEEB 0%, #1E90FF 100%);
+	background-image: linear-gradient(to bottom, #00acff 0%, #23aae3 50%, #1e528e 100%);
   color: #4b384c;
   font-family: 'overlock', Helvetica, sans-serif;
   font-weight: 300;
@@ -20,18 +20,20 @@
 }
 
 .moon {
-  position: absolute;
-	width: 6rem;
-	height: 6rem;
-  top: 45px;
-  left: 55px;
-  border-radius: 50px;
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    top: 45px;
+    left: 55px;
+    border-radius: 50px;
 	background-color: #ffd700;
-	animation: rise 1s ease-out;
-	&:hover {
-		transform: scale(1.35);
-		transition: 3s;
-	}
+	box-shadow: 0rem 0rem 2rem 30px rgba(220, 255, 0, 0.95);
+    animation: rise 1s ease-out;
+    transition: transform 3s;
+	    &:hover {
+		    transform: scale(1.5);
+		    transition: 5s;
+	    }
 }
 
 
@@ -49,7 +51,7 @@
 
 
 .hill-fg-1, .hill-fg-2, .hill-fg-3 {
-  background: linear-gradient(to bottom, #9ee88d, #31a80a);;
+  background: linear-gradient(to bottom, #9ee88d, #31a80a);
   top: 228px;
   left: -137px;
 }
@@ -72,7 +74,7 @@
   left: 0;
   bottom: -53px;
   background: #fff;
-	box-shadow: 1rem 0 1rem rgba(0, 0, 0, .5);
+	box-shadow: -1rem 0 1rem rgba(0, 0, 0, .5);
 	animation: slide 1s;
 	transition: 1s ease-in-out;
 	z-index: 1000;
@@ -118,7 +120,7 @@
 }
 .front .preview td {
   padding: 0 3px;
-  text-transform: uppercase;
+   text-transform: capitalize;
 }
 
 @keyframes rise {

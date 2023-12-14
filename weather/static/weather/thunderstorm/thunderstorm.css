@@ -121,7 +121,7 @@
 }
 .front .preview td {
   padding: 0 3px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .drop-big-1, .drop-medium-1, .drop-small-1, .drop-medium-2, .drop-small-2, .drop-medium-3, .drop-small-3, .drop-medium-4, .drop-small-4, .drop-medium-5, .drop-small-5, .drop-medium-6, .drop-small-6, .drop-medium-7, .drop-small-7, .drop-medium-8, .drop-small-8, .drop-medium-9, .drop-small-9, .drop-medium-10, .drop-small-10 {
