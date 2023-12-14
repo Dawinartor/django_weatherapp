@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} Clear {% endblock %}
+{% block title %} Rain {% endblock %}
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{% static 'weather/clear/clear.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/rain/rain.css' %}">
 {% endblock %}
 
-{% block body_title %} Clear {% endblock %}
+{% block body_title %} Rain {% endblock %}
 {% block content %}
     <div class="frame">
       <div class="moon"></div>
+      <div class="hill-bg-1"></div>
+      <div class="hill-bg-2"></div>
       <div class="hill-fg-1"></div>
+      <div class="hill-fg-2"></div>
+      <div class="hill-fg-3"></div>
 
-     <div class="front">
+      <div class="front">
             <div>
                 <div class="temperature">
                     {{ current_temperature|floatformat:0 }}°
