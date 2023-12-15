@@ -1,16 +1,14 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-import json
-
 # from django.views.generic import TemplateView
 from .utilities import WeatherCaller
+import json
 
-# Current TODi: Create various components for all weather conditions
-# List: Thunderstorm, Drizzle, Rain, Snow, Atmosphere, Clear, Clouds
+variable = None
 
 # Create your views here.
-def WebtherView(request, ):
+def WebtherView(request, latitude=None, longitude=None):
     weather_templates = {
         'thunderstorm': 'weather/thunderstorm.html',
         'drizzle': 'weather/drizzle.html',
@@ -22,6 +20,15 @@ def WebtherView(request, ):
         'sunny': 'weather/sun.html',  # unused template so far
     }
     template_name = ""
+
+    # If latitude and longitude are not provided in the URL parameters,
+    # try to get them from the request body (POST request)
+    if latitude is None or longitude is None:
+        if request.method == 'POST':
+            data = json.loads(request.body)
+            latitude = data.get('latitude')
+            longitude = data.get('longitude')
+    print(latitude, longitude)
 
     weather_util = WeatherCaller()
     base_url = weather_util.get_url()
@@ -61,8 +68,17 @@ def handle_geolocation(request):
 
         # Process the latitude and longitude as needed
         # For example, you can save them to a database or perform other actions
-        #print(request.method, latitude, longitude)
+        # print(request.method, latitude, longitude)
+        variable = process_geolocation(latitude, longitude)
 
         return JsonResponse({'status': 'success'})
     else:
         return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+def process_geolocation(latitude, longitude):
+    # Access latitude and longitude in this function
+    # Process the data as needed
+    result = f"Received latitude: {latitude} & longitude: {longitude}"
+    print(result)
+    return result
+
