@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
 # from django.views.generic import TemplateView
 from .utilities import WeatherCaller
 
@@ -6,7 +10,7 @@ from .utilities import WeatherCaller
 # List: Thunderstorm, Drizzle, Rain, Snow, Atmosphere, Clear, Clouds
 
 # Create your views here.
-def WebtherView(request):
+def WebtherView(request, ):
     weather_templates = {
         'thunderstorm': 'weather/thunderstorm.html',
         'drizzle': 'weather/drizzle.html',
@@ -23,8 +27,8 @@ def WebtherView(request):
     base_url = weather_util.get_url()
     raw_data = weather_util.get_weather_data_raw(base_url)
     context = weather_util.data_raw_to_webther_format(raw_data)
-    print(context)
-    context['current_weather_status'] = "Clouds"
+
+    context['current_weather_status'] = "Rain"
 
     # conditional template switch logic
     if context['current_weather_status'] == "Thunderstorm":
@@ -48,4 +52,17 @@ def WebtherView(request):
 
 #def WebtherView(TemplateView): #TODOO: implement api call and showing data in view
 
+@csrf_exempt
+def handle_geolocation(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        latitude = data.get('latitude')
+        longitude = data.get('longitude')
 
+        # Process the latitude and longitude as needed
+        # For example, you can save them to a database or perform other actions
+        #print(request.method, latitude, longitude)
+
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
