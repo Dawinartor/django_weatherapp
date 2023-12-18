@@ -46,7 +46,6 @@ class WeatherCaller:
                     f"&lon={params['longitude']}" +
                     f"&exclude={params['excluding_info']}" +
                     f"&appid={self.API_KEY}")
-        print(base_url)
         return base_url
 
     def get_weather_data_raw(self, url):
