@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-# from django.views.generic import TemplateView
+from django.views.generic import TemplateView
 from .utilities import WeatherCaller
 import json
 
-variable = None
+class defaultView(TemplateView):
+    template_name = 'weather/default.html'
 
 # Create your views here.
+@csrf_exempt
 def WebtherView(request, latitude=None, longitude=None):
     weather_templates = {
         'thunderstorm': 'weather/thunderstorm.html',
@@ -23,19 +25,21 @@ def WebtherView(request, latitude=None, longitude=None):
 
     # If latitude and longitude are not provided in the URL parameters,
     # try to get them from the request body (POST request)
-    if latitude is None or longitude is None:
-        if request.method == 'POST':
-            data = json.loads(request.body)
-            latitude = data.get('latitude')
-            longitude = data.get('longitude')
-    print(latitude, longitude)
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        latitude = data.get('latitude')
+        longitude = data.get('longitude')
+        print(latitude, longitude)
+
+        # Process the latitude and longitude as needed
+        # For example, you can save them to a database or perform other actions
+        #geoLoc = process_geolocation(latitude, longitude)
 
     weather_util = WeatherCaller()
     base_url = weather_util.get_url()
     raw_data = weather_util.get_weather_data_raw(base_url)
     context = weather_util.data_raw_to_webther_format(raw_data)
-
-    context['current_weather_status'] = "Rain"
+    print(context)
 
     # conditional template switch logic
     if context['current_weather_status'] == "Thunderstorm":
@@ -78,7 +82,7 @@ def handle_geolocation(request):
 def process_geolocation(latitude, longitude):
     # Access latitude and longitude in this function
     # Process the data as needed
-    result = f"Received latitude: {latitude} & longitude: {longitude}"
-    print(result)
-    return result
+    print(f"Received latitude: {latitude} & longitude: {longitude}")
+    geoCoordinates = {"latitude": latitude, "longitude": longitude}
+    return geoCoordinates
 

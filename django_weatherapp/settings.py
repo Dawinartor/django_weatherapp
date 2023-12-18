@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -129,5 +130,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# enable https
-# SECURE_SSL_REDIRECT = False
+# Use HTTPS for secure connections
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Specify the paths to the certificate files
+SSL_CERTIFICATE_PATH = 'certificates/localhost.pem'
+SSL_CERTIFICATE_KEY_PATH = 'certificates/localhost-key.pem'

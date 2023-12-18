@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Default {% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/default/default.css' %}">
+{% endblock %}
+
+{% block body_title %} Default {% endblock %}
+{% block content %}
+    <div class="frame">
+      <div class="moon"></div>
+      <div class="hill-fg-1"></div>
+      <div class="hill-fg-2"></div>
+      <div class="hill-fg-3"></div>
+
+      <div class="front">
+            <div>
+                <div class="temperature">
+                    0
+                </div>
+                <div class="icons">
+                    <!--i class="fas fa-wind"></i><br/><i class="fas fa-tint"></i-->
+                </div>
+                <div>
+                    <div class="info">
+                        0 UV <br> 0 KM/H
+                    </div>
+                    <table class="preview">
+                        <tbody>
+                            <tr>
+                                <td> sunrise </td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td> sunset </td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- the proverb is reserved for ChatGPT clothing recomandation -->
+            <div class="proverb">0</div>
+        </div>
+
+      <div class="drop-big-1"></div>
+      <div class="drop-big-2"></div>
+      <div class="drop-big-3"></div>
+      <div class="drop-big-4"></div>
+      <div class="drop-big-5"></div>
+      <div class="drop-big-6"></div>
+      <div class="drop-big-7"></div>
+      <div class="drop-big-8"></div>
+      <div class="drop-big-9"></div>
+      <div class="drop-big-10"></div>
+      <div class="drop-medium-1"></div>
+      <div class="drop-medium-2"></div>
+      <div class="drop-medium-3"></div>
+      <div class="drop-medium-4"></div>
+      <div class="drop-medium-5"></div>
+      <div class="drop-medium-6"></div>
+      <div class="drop-medium-7"></div>
+      <div class="drop-medium-8"></div>
+      <div class="drop-medium-9"></div>
+      <div class="drop-medium-10"></div>
+      <div class="drop-small-1"></div>
+      <div class="drop-small-2"></div>
+      <div class="drop-small-3"></div>
+      <div class="drop-small-4"></div>
+      <div class="drop-small-5"></div>
+      <div class="drop-small-6"></div>
+      <div class="drop-small-7"></div>
+      <div class="drop-small-8"></div>
+      <div class="drop-small-9"></div>
+      <div class="drop-small-10"></div>
+    </div>
+{% endblock %}
+
