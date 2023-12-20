@@ -22,7 +22,7 @@ class DataConverter:
 class WeatherCaller:
     def __init__(self): # todo: add base_url concept
         # loading API key in system
-        self.API_KEY = os.environ.get('API_KEY')
+        self.API_KEY = os.environ.get("OpenWeather_API_KEY", "default_value_if_not_set")
         # data converter
         self.data_converter = DataConverter()
         self.WEBTHER_FORMAT = {

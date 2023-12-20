@@ -25,7 +25,6 @@ SECRET_KEY = 'django-insecure-j2#v(_4_wd-6e85ybl*e=y0@6(*!zsche&tai(l-hgxb4z=k*%
 
 # Load API Key
 load_dotenv()
-API_KEY = os.environ.get("API_KEY", "default_value_if_not_set")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
