@@ -8,6 +8,12 @@ import json
 class DefaultView(TemplateView):
     template_name = 'weather/default.html'
 
+    weather_util = WeatherCaller()
+    base_url = weather_util.get_url()
+    raw_data = weather_util.get_weather_data_raw(base_url)
+    context = weather_util.data_raw_to_webther_format(raw_data)
+    print(context)
+
     def dispatch(self, request, *args, **kwargs):
         # Check if it's a POST request and if latitude and longitude are provided
         if request.method == 'POST':
